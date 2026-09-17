@@ -1,36 +1,186 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Student Task Manager
+
+A full-stack Student Task Management Application built for the Lunorsoft Full Stack Developer assignment.
+
+## Overview
+
+Student Task Manager helps students organize and track their academic tasks in one place. Users can create, edit, delete, complete, and filter tasks while keeping their task data stored in a database.
+
+## Features
+
+- User registration and login
+- Secure session-based authentication
+- Create tasks
+- Edit existing tasks
+- Delete tasks
+- Mark tasks as completed
+- View all, pending, and completed tasks
+- Task priority levels
+- Due dates
+- Optional task descriptions
+- Dashboard with task statistics
+- Responsive and modern UI
+- Persistent database storage
+
+## Tech Stack
+
+### Frontend
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+### Backend
+- Next.js API Routes
+- Node.js
+- REST-style API endpoints
+
+### Database
+- MongoDB
+- Mongoose
+
+### Authentication
+- JWT
+- HTTP-only cookies
+- jose
+
+## Project Structure
+
+```text
+student-task-manager/
+├── app/
+│   ├── api/
+│   │   ├── auth/
+│   │   └── tasks/
+│   ├── dashboard/
+│   ├── login/
+│   ├── register/
+│   └── tasks/
+├── lib/
+│   ├── Task.js
+│   ├── User.js
+│   ├── auth.js
+│   └── mongodb.js
+├── public/
+├── package.json
+└── README.md
+```
+
+## Main API Routes
+
+### Authentication
+
+```text
+POST /api/auth/register
+POST /api/auth/login
+POST /api/auth/logout
+GET  /api/auth/session
+```
+
+### Tasks
+
+```text
+GET    /api/tasks
+POST   /api/tasks
+PUT    /api/tasks/:id
+DELETE /api/tasks/:id
+```
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/akshmurali07/student-task-manager.git
+cd student-task-manager
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure environment variables
+
+Create a `.env.local` file in the project root:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+AUTH_SECRET=your_auth_secret
+```
+
+Do not commit `.env.local` to GitHub.
+
+### 4. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the application at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Application Flow
 
-## Learn More
+```text
+Landing Page
+     ↓
+Login / Register
+     ↓
+Authentication
+     ↓
+Dashboard
+     ↓
+Create / Edit / Complete / Delete Tasks
+     ↓
+MongoDB
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Architecture
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application uses a Next.js full-stack architecture.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- React and Next.js are used for the frontend.
+- Next.js API routes handle backend operations.
+- MongoDB stores users and task data.
+- Mongoose manages database models and queries.
+- Authentication is handled using JWT-based sessions stored in HTTP-only cookies.
 
-## Deploy on Vercel
+## Testing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The following functionality was tested locally:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- User registration
+- User login
+- Authentication protection for the dashboard
+- Logout
+- Creating tasks
+- Editing tasks
+- Deleting tasks
+- Marking tasks as completed
+- Filtering pending and completed tasks
+- Dashboard task statistics
+
+## AI Tools Disclosure
+
+ChatGPT was used during development for debugging assistance, implementation guidance, code suggestions, and troubleshooting.
+
+The generated suggestions were reviewed, integrated, tested, and modified as part of the project development process.
+
+## Future Improvements
+
+- Task search
+- Additional task sorting options
+- Dashboard analytics
+- Improved form validation
+- Deployment and production monitoring
+
+## Author
+
+**Akshara Murali**
+
+GitHub: [akshmurali07](https://github.com/akshmurali07)
