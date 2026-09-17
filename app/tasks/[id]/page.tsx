@@ -14,7 +14,7 @@ export default function TaskDetail() {
   const { id } = useParams();
   const router = useRouter();
 
-  const [task, setTask] = useState(null);
+  const [task, setTask] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -41,7 +41,7 @@ export default function TaskDetail() {
     setLoading(false);
   }
 
-  async function saveChanges(e) {
+  async function saveChanges(e: React.FormEvent) {
     e.preventDefault();
     if (!title.trim()) return;
 
@@ -103,7 +103,7 @@ export default function TaskDetail() {
         <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/[0.08] rounded-2xl p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
           <div className="flex items-center justify-between mb-6">
             <span
-              className={`text-xs font-medium px-2.5 py-1 rounded-full border capitalize ${priorityStyles[task.priority || "medium"]}`}
+              className={`text-xs font-medium px-2.5 py-1 rounded-full border capitalize ${priorityStyles[(task.priority || "medium") as keyof typeof priorityStyles]}`}
             >
               {task.priority || "medium"} priority
             </span>
@@ -125,7 +125,7 @@ export default function TaskDetail() {
               <input
                 type="text"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
                 className="w-full bg-black/20 border border-white/[0.08] rounded-xl px-3 py-2.5 text-sm text-gray-100 focus:outline-none focus:border-[#8b5cf6]/50 focus:ring-1 focus:ring-[#8b5cf6]/30 transition"
               />
             </div>
@@ -134,7 +134,7 @@ export default function TaskDetail() {
               <label className="text-xs text-gray-500 block mb-1.5">Description</label>
               <textarea
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
                 rows={4}
                 className="w-full bg-black/20 border border-white/[0.08] rounded-xl px-3 py-2.5 text-sm text-gray-100 focus:outline-none focus:border-[#8b5cf6]/50 focus:ring-1 focus:ring-[#8b5cf6]/30 transition resize-none"
               />
@@ -145,7 +145,7 @@ export default function TaskDetail() {
                 <label className="text-xs text-gray-500 block mb-1.5">Priority</label>
                 <select
                   value={priority}
-                  onChange={(e) => setPriority(e.target.value)}
+                   onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setPriority(e.target.value)}
                   className="w-full bg-black/20 border border-white/[0.08] rounded-xl px-3 py-2.5 text-sm text-gray-100 focus:outline-none focus:border-[#8b5cf6]/50 transition"
                 >
                   <option value="low">Low</option>
@@ -158,7 +158,7 @@ export default function TaskDetail() {
                 <input
                   type="date"
                   value={dueDate}
-                  onChange={(e) => setDueDate(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDueDate(e.target.value)}
                   className="w-full bg-black/20 border border-white/[0.08] rounded-xl px-3 py-2.5 text-sm text-gray-100 focus:outline-none focus:border-[#8b5cf6]/50 transition [color-scheme:dark]"
                 />
               </div>

@@ -8,7 +8,7 @@ async function handleLogout() {
 }
 import Link from "next/link";
 
-const priorityStyles = {
+const priorityStyles: Record<string, { dot: string; text: string }> = {
   low: { dot: "bg-slate-400", text: "text-slate-400" },
   medium: { dot: "bg-amber-400", text: "text-amber-400" },
   high: { dot: "bg-rose-400", text: "text-rose-400" },
@@ -25,7 +25,7 @@ useEffect(() => {
       }
     });
 }, [router]);
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<any[]>([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("medium");
@@ -45,7 +45,7 @@ useEffect(() => {
     setLoading(false);
   }
 
-  async function addTask(e) {
+  async function addTask(e: React.FormEvent) {
     e.preventDefault();
     if (!title.trim()) return;
 
@@ -62,7 +62,7 @@ useEffect(() => {
     fetchTasks();
   }
 
-  async function toggleComplete(id, completed, e) {
+  async function toggleComplete(id: string, completed: boolean, e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
     e.stopPropagation();
     await fetch(`/api/tasks/${id}`, {
@@ -73,7 +73,7 @@ useEffect(() => {
     fetchTasks();
   }
 
-  async function deleteTask(id, e) {
+  async function deleteTask(id: string, e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
     await fetch(`/api/tasks/${id}`, { method: "DELETE" });
@@ -216,7 +216,7 @@ useEffect(() => {
                       <input
                         type="checkbox"
                         checked={task.completed}
-                        onChange={(e) => toggleComplete(task._id, task.completed, e)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => toggleComplete(task._id, task.completed, e)}
                         className="mt-1 w-4 h-4 accent-[#22d3ee] cursor-pointer shrink-0"
                       />
                       <div className="min-w-0 flex-1">
