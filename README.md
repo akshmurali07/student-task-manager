@@ -167,7 +167,7 @@ The following functionality was tested locally:
 
 ## AI Tools Disclosure
 
-ChatGPT was used during development for debugging assistance, implementation guidance, code suggestions, and troubleshooting.
+Claude was used during development for debugging assistance, implementation guidance, code suggestions, and troubleshooting.
 
 The generated suggestions were reviewed, integrated, tested, and modified as part of the project development process.
 
